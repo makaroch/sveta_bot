@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: postgres_db
+    env_file:
+      - .env
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 9339:8080
+  bot:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    container_name: bot_cont
+    image: bot_img
+    env_file:
+      - .env
+    depends_on:
+      - db
+    command: >
+      "alembic upgrade head && python main.py"
