@@ -24,4 +24,4 @@ services:
     depends_on:
       - db
     command: >
-      "alembic upgrade head && python main.py"
+      bash -c "alembic upgrade head && python main.py"
