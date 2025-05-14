@@ -22,9 +22,11 @@ async def spam_to_user():
     start_spam_time = dt.datetime(
         year=dt.date.today().year, month=dt.date.today().month, day=dt.date.today().day, hour=8, minute=0
     )
+    start_spam_time = pytz.timezone("Europe/Moscow").localize(start_spam_time)
     end_spam_time = dt.datetime(
-        year=dt.date.today().year, month=dt.date.today().month, day=dt.date.today().day, hour=21, minute=0
+        year=dt.date.today().year, month=dt.date.today().month, day=dt.date.today().day, hour=21, minute=30
     )
+    end_spam_time = pytz.timezone("Europe/Moscow").localize(end_spam_time)
 
     if not start_spam_time <= moscow_time_now <= end_spam_time:
         return
