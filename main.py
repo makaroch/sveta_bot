@@ -51,7 +51,9 @@ async def main():
     schedule = Scheduler(loop=loop)
 
     # schedule.daily(dt.time(hour=9, minute=30), spam_to_user)
-    schedule.cyclic(dt.timedelta(hours=1), spam_to_user)
+    # schedule.cyclic(dt.timedelta(minutes=1), spam_to_user)
+    schedule.daily(dt.time(hour=8), spam_to_user)
+    schedule.daily(dt.time(hour=16), spam_to_user)
 
     dp.include_router(handlers_router)
     await dp.start_polling(bot)
